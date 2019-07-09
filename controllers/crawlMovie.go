@@ -2913,7 +2913,8 @@ for(var i = 0, l = accounts.length; i < l; i++) {
 
 
 `
-
-	c.Ctx.WriteString(models.GetMovieDirector(sMovieHtml))
+	c.Ctx.WriteString(models.GetMovieDirector(sMovieHtml) + " | ")
+	c.Ctx.WriteString(models.GetMovieName(sMovieHtml) + " | ")
+	c.Ctx.WriteString(models.GetMovieMainCharacters(sMovieHtml))
 
 }
