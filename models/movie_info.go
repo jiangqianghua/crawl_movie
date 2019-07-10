@@ -1,7 +1,7 @@
 package models
 
 import (
-	"fmt"
+	// "fmt"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	"regexp"
@@ -60,7 +60,10 @@ func GetMovieName(movieHtml string) string {
 	//<span property="v:itemreviewed">扫毒2天地对决 掃毒2：天地對決</span>
 	reg := regexp.MustCompile(`<span.*?property="v:itemreviewed">(.*)</span>`)
 	result := reg.FindAllStringSubmatch(movieHtml, -1)
-	fmt.Println(string(result[0][1]))
+	if len(result) == 0 {
+		return ""
+	}
+	//fmt.Println(string(result[0][1]))
 	return string(result[0][1])
 }
 
@@ -71,7 +74,7 @@ func GetMovieMainCharacters(movieHtml string) string {
 	if len(result) == 0 {
 		return ""
 	}
-	fmt.Println("%v", result)
+	//fmt.Println("%v", result)
 	mainCharacters := ""
 	for _, v := range result {
 		mainCharacters += v[1] + "/"
